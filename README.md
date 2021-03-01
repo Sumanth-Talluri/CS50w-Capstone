@@ -1,4 +1,4 @@
-# CS50W-final-project
+# CS50W Capstone
 
 This project is called Reader's Cabin which is a site where people can search for books and make their reading lists. From a long time I wanted a site where I can search for books, create reading lists and keep track of the books I am currently reading and the books which I already read. This site does exactly that.
 
