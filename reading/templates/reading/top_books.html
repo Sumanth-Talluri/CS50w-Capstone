@@ -1,0 +1,26 @@
+{% extends "reading/layout.html" %} {% block content %} {% load static %}
+
+    {% if books %}
+        {% for book in books %}
+            <div class="row my-3">
+                <div class="card mx-auto" style="width: 18rem;">
+                    <a class="text-decoration-none text-body" href="{% url 'book' book.gid %}">
+                        <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.thumbnail }}">
+                        <div class="card-body">
+                            <h1>{{ forloop.counter }}</h1>
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            {% for author in book.authors %}
+                                <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
+                            {% endfor %}
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="card-body">
+            <h1 align="center">No Results Found</h1>
+        </div> 
+    {% endif %}
+
+{% endblock %}

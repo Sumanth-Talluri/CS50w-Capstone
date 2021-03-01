@@ -1,0 +1,31 @@
+{% extends 'reading/layout.html' %} {% block content %}
+
+<div class="container mt-4">
+    <h1>Search Results</h1>
+    <br>
+    <div class="row justify-content-center">
+
+        {% for book in books %}
+        <div class="col-auto mb-3">
+            <div class="card" style="width: 18rem;">
+                <a class="text-decoration-none text-body" href="{% url 'book' book.gid %}">
+                    <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.thumbnail }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        {% for author in book.authors %}
+                        <!-- <a href=""> -->
+                            <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
+                        <!-- </a> -->
+                        {% endfor %}
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% empty %}
+        <h2 class="text-muted">No results were found</h2>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}

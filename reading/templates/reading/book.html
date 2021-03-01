@@ -1,0 +1,56 @@
+{% extends 'reading/layout.html' %} {% block content %}{% load static %}
+<div class="container row m-4">
+    {% if user.is_authenticated %}
+    <div class="col-lg-3">
+        <img src="{{ book.thumbnail }}" alt="" style="height: 20rem;">
+        <div class="w-100 d-lg-none d-block"></div>
+        {% if is_in_readingList %}
+            <a href="{% url 'add_book' book.gid %}"><button class="btn btn-danger my-4">Remove from reading list</button></a>
+        {% else %}
+            <a href="{% url 'add_book' book.gid %}"><button class="btn btn-info my-4">Add to reading list</button></a>
+        {% endif %}
+    {% endif %}
+    </div>
+    <div class="w-100 d-lg-none d-block"></div>
+    <div class="col">
+        <div class="row">
+            <div class="col-5">
+                <h1>{{ book.title }}</h1>
+                <h5>By {% for author in book.authors %}{{ author }}{% if author != book.authors|last %}, {% endif %}{% endfor %}</h5>
+            </div>
+            <div class="w-100 d-lg-none d-block"></div>
+            <div class="col">
+                <div class="row">
+                    <div class="rating2" style="color:orange;">★</div>
+                    <ul class="list-group list-group-horizontal col">
+                        <li class="list-group-item border-0"><h3>{{book.averageRating}} <span class="text-muted align-middle" style="font-size: 15px;">({{book.ratingsCount}})</span></h3></li>
+                        <li class="list-group-item border-0 text-muted"></li>
+                    </ul>
+                </div>
+
+                <script type="text/javascript">
+                    var cw = window.rating1.clientWidth; // save original 100% pixel width
+                    function rating(stars) {
+                        window.rating1.style.width = Math.round(cw * (stars / 5)) + 'px';
+                    }
+                    var a = book.averageRating;
+                    rating(a);
+                </script>
+            </div>
+        </div>
+
+
+        <div class="dropdown-divider "></div>
+        <p><strong>Publisher: </strong>{{ book.publisher }}</p>
+        <p><strong>Published on: </strong>{{ book.publishedDate }}</p>
+        <p><strong>ISBN10: </strong>{{ book.isbn10 }}</p>
+        <p><strong>ISBN13: </strong>{{ book.isbn13 }}</p>
+        <p><strong>Number of pages: </strong>{{ book.pageCount }}</p>
+        <p><strong>Categories: </strong>{% for category in book.categories %}{{ category }}{% if category != book.categories|last %}, {% endif %}{% endfor %}</p>
+        <p><strong>Language: </strong>{{ book.language }}</p>
+    </div>
+</div>
+
+
+
+{% endblock %}

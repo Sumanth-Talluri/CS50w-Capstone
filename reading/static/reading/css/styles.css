@@ -1,0 +1,19 @@
+.rating {
+    font-size: 38px;
+    color: orange;
+    display: inline-block;
+    overflow: hidden;
+    position: absolute;
+}
+
+.rating::before {
+    content: "★★★★★"
+}
+
+.rating2 {
+    font-size: 38px;
+    color: gray;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 3;
+}

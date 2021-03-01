@@ -1,0 +1,82 @@
+{% extends "reading/layout.html" %} {% block content %} {% load static %}
+
+<script src="{% static 'reading/js/readinglist.js' %}"></script>
+<script src="{% static 'reading/js/imagepicker.js'%}"></script>
+
+<div class="border rounded mx-auto mt-3" style="width: 95%;">
+    <div class="row m-4 d-flex justify-content-around align-items-center">
+        <h1>{{ user }}</h1>
+        <h5 id="btn-saved"><strong>Saved: </strong>{{ saved }}</h5>
+        <h5 id="btn-reading"><strong>Reading: </strong>{{ reading }}</h5>
+        <h5 id="btn-read"><strong>Read: </strong>{{ read }}</h5>
+    </div>
+</div>
+
+<div class="row mx-auto mt-3 d-flex align-items-center" style="width:95%;">
+
+    <h1 id="title" class="col">Books saved:</h1>
+
+</div>
+
+<div class="row mt-3 justify-content-center">
+
+    {% for book in books %}
+
+        {% if book.model.started == None and book.model.finished == None %}
+        <div class="saved col-auto mb-3">
+        {% elif book.model.finished != None %}
+        <div class="read col-auto mb-3">
+        {% else %}
+        <div class="reading col-auto mb-3">
+        {% endif %}
+            <div class="card" style="width: 18rem;">
+                <a class="text-decoration-none text-body" href="{% url 'book' book.api.gid %}">
+                    <img class="card-img-top" style="object-fit: contain; height: 18rem;" src="{{ book.api.thumbnail }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.api.title }}</h5>
+                        {% for author in book.api.authors %}
+                        <!-- <a href=""> -->
+                            <h6 class="card-subtitle mb-2 text-muted">{{ author }}</h6>
+                        <!-- </a> -->
+                        {% endfor %}
+                </a>
+                        {% if book.model.started == None %}
+                            <form class="" action="{% url 'user' %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-primary" value="Start reading">
+                                <input type="hidden" name="book_gid" value="{{ book.model.gid }}">
+                            </form>
+                        {% elif book.model.started != None and book.model.finished == None %}
+                            <p>Started: {{ book.model.started }}</p>
+                            <!-- <button class="btn btn-danger" type="button">Finish reading</button> -->
+                            <form class="" action="{% url 'user' %}" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-danger" value="Finish reading">
+                                <input type="hidden" name="book_gid" value="{{ book.model.gid }}">
+                            </form>
+                        {% else %}
+                            <p class="text-muted" style="line-height:30%"><small>Started: {{ book.model.started }}</small></p>
+                            <p class="text-muted" style="line-height:30%"><small>Finished: {{ book.model.finished }}</small></p>
+                        {% endif %}
+
+                    </div>
+
+            </div>
+        </div>
+    {% endfor %}
+
+</div>
+
+<script type="text/javascript">
+    document.querySelectorAll('.saved').forEach(book => {
+        book.style.display = 'block'
+    });
+    document.querySelectorAll('.reading').forEach(book => {
+        book.style.display = 'none'
+    });
+    document.querySelectorAll('.read').forEach(book => {
+        book.style.display = 'none'
+    });
+</script>
+
+{% endblock %}
