@@ -61,7 +61,7 @@ Run "python manage.py runserver" to run the project.
 
 :computer: &nbsp; **View Course [here](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript)**
 
-:arrow_forward: &nbsp; **View Live Demo [here]()**
+:arrow_forward: &nbsp; **View Live Demo [here](https://www.youtube.com/watch?v=FP2xJ-0CMZc)**
 
 &nbsp;
 
