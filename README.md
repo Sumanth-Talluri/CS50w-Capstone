@@ -1,4 +1,4 @@
-# CS50W Capstone
+# CS50w Capstone
 
 This project is called Reader's Cabin which is a site where people can search for books and make their reading lists. From a long time I wanted a site where I can search for books, create reading lists and keep track of the books I am currently reading and the books which I already read. This site does exactly that.
 
@@ -56,3 +56,23 @@ Run "python manage.py runserver" to run the project.
 - reading/views.py contains all the views.
 - reading/urls.py contains all the URLS.
 - reading/models.py contains all the models created for this project.
+
+&nbsp;
+
+:computer: &nbsp; **View Course [here](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript)**
+
+:arrow_forward: &nbsp; **View Live Demo [here]()**
+
+&nbsp;
+
+### Contribute
+
+Contributions are always welcome! Please create a PR to contribute.
+
+### :pencil: &nbsp; License
+
+This project is licensed under [MIT](https://opensource.org/licenses/MIT) license.
+
+### :man_astronaut: &nbsp; Show your support
+
+Give a ⭐️ if this project helped you!
